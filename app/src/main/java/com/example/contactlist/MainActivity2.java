@@ -1,0 +1,97 @@
+package com.example.contactlist;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.FilterQueryProvider;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+
+import com.android.contactlist.R;
+
+
+public class MainActivity2 extends AppCompatActivity {
+
+    //calling variables
+    DbAdapter db;
+    SimpleCursorAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+
+        //calling DbAdapter
+        db = new DbAdapter(this);
+        db.open();
+        //initially insert some data
+        //db.insert("Color Picker", "+840885654", "info@icyarena.com", "US");
+        //db.insert("Mike Helen", "+808853437", "halen@icyarena.com", "UK");
+        //db.insert("Robart Pink", "+808851234", "robart@icyarena.com", "AUS");
+        //display data
+        ListView lv = (ListView) findViewById(R.id.listView1);
+        int layoutstyle=R.layout.liststyle;
+        int[] xml_id = new int[] {
+                R.id.txtname,
+                R.id.txtnumber
+        };
+        String[] column = new String[] {
+                "name",
+                "number"
+        };
+        Cursor row = db.fetchAllData();
+        adapter = new SimpleCursorAdapter(this, layoutstyle,row,column, xml_id, 0);
+        lv.setAdapter(adapter);
+        //onClick function
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterview, View view, int position, long id) {
+                Cursor row = (Cursor) adapterview.getItemAtPosition(position);
+                String _id = row.getString(row.getColumnIndexOrThrow("_id"));
+                String name = row.getString(row.getColumnIndexOrThrow("name"));
+                String number = row.getString(row.getColumnIndexOrThrow("number"));
+                String email = row.getString(row.getColumnIndexOrThrow("email"));
+                String address = row.getString(row.getColumnIndexOrThrow("address"));
+                //go to detailsContact page
+                Intent todetais = new Intent(MainActivity2.this, DetailsContact.class);
+                todetais.putExtra("ID",_id);
+                todetais.putExtra("RAW MATERIALS", name);
+                todetais.putExtra("QUANTITY REQUIRED",number);
+                todetais.putExtra("OUTPUT PRODUCT",email);
+                todetais.putExtra("DESCRIPTION",address);
+                startActivity(todetais);
+            }
+        });
+        //dispay data by filter
+        EditText et = (EditText) findViewById(R.id.myFilter);
+        et.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s.toString());
+            }
+        });
+        adapter.setFilterQueryProvider(new FilterQueryProvider() {
+            public Cursor runQuery(CharSequence constraint) {
+                return db.fetchdatabyfilter(constraint.toString(),"name");
+            }
+        });
+    }
+    public void addContact(View v){
+        Intent addNewContact = new Intent(MainActivity2.this, addNewContact.class);
+        startActivity(addNewContact);
+
+
+    }
+
+}

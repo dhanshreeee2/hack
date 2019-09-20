@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.contactlist.MainActivity"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="412dp"
+        android:layout_height="231dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="497dp"
+        android:src="@drawable/images"/>
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="295dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="388dp"
+        android:text="HOME" />
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="584dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="99dp"
+        android:text="CONTACT US" />
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="484dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="199dp"
+        android:text="GALLERY" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="386dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="297dp"
+        android:text="PRODUCT DETAILS" />
+
+</RelativeLayout>
